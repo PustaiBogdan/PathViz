@@ -4,6 +4,8 @@
    // var d = abs(a.i - b.i) + abs(a.j - b.j);
    return d;
  }
+
+
  function AStarSerch(begin){
     if(begin)
     {if (openSet.length > 0) {
@@ -81,8 +83,9 @@
     }
     for (var i=0;i<rows;i++){
       for(var j=0; j<cols;j++){
-        if(!openSet.includes(grid[i][j]) && !closedSet.includes(grid[i][j])){
+        if(true){
           grid[i][j].show(color(225, 225, 225));
+          console.log(grid[i][j].wall);
         }
 
       }
@@ -101,24 +104,25 @@
   
     // for (var i = 0; i < path.length; i++) {
     // path[i].show(color(0, 0, 255));
-    //}
+    // }
   
     // Drawing path as continuous line
     noFill();
     stroke(255);
-    strokeWeight(w/2);
+    strokeWeight(cellDimentions/2);
     beginShape();
     for (var i = 0; i < path.length; i++) {
-      vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+      vertex(path[i].j *cellDimentions+  cellDimentions/ 2, path[i].i * cellDimentions +cellDimentions / 2);
+     
     }
     endShape();
     if(current === end){
       noFill();
       stroke(205, 205, 0,120);
-      strokeWeight(w/2);
+      strokeWeight(cellDimentions/2);
       beginShape();
       for (var i = 0; i < path.length; i++) {
-        vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
+        vertex(path[i].j *cellDimentions+  cellDimentions/ 2, path[i].i * cellDimentions +cellDimentions / 2);
       }
       endShape();
     }
@@ -141,5 +145,5 @@ function startAStar(){
     if(begin==false){
       buttonText.innerHTML="Start A* serch";
     }
-    console.log(begin);
+ 
   }

@@ -17,13 +17,15 @@ function removeFromArray(arr, elt) {
     // var d = abs(a.i - b.i) + abs(a.j - b.j);
     return d;
   }
-  
+  var cellDimentions= 25;
   // How many columns and cols?
-  var rows = 10;
-  var cols = 10;
-  
+  var rows = 19;
+  var cols = 20;
+  var w=cols*cellDimentions, h=rows*cellDimentions;
+
+
   // This will be the 2D array
-  var grid = new Array(cols);
+  var grid = new Array(rows);
   
   // Open and closed set
   var openSet = [];
@@ -34,9 +36,9 @@ function removeFromArray(arr, elt) {
   var end;
   
   // Width and height of each cell of grid
-  var w=600, h=600;
-  var cellWidth=w/cols, cellHeight=h/rows;
-  console.log(cellHeight,cellWidth);
+
+
+ 
 
   
   // The road taken
@@ -45,22 +47,20 @@ function removeFromArray(arr, elt) {
   function setup() {
 
     createCanvas(w, h);
-    var context = canvas.getContext("2d");
+
 
 
     // Grid cell size
-    w = width / rows;
-    h = height / cols;
+
   
     // Making a 2D array
     for (var i = 0; i < rows; i++) {
       grid[i] = new Array(cols);
     }
-  
+
     for (var i = 0; i < rows; i++) {
       for (var j = 0; j < cols; j++) {
         grid[i][j] = new Spot(i, j);
-        
       }
     }
   
@@ -103,8 +103,8 @@ function removeFromArray(arr, elt) {
 
   function mousePressed(){
 
-    let x_mouse=floor(mouseX/cellWidth);
-    let y_mouse=floor(mouseY/cellHeight);
+    let x_mouse=floor(mouseX/cellDimentions);
+    let y_mouse=floor(mouseY/cellDimentions);
 
     if(x_mouse<cols && y_mouse<rows && x_mouse>=0 && y_mouse>=0)
 {    grid[x_mouse][y_mouse].wall=!grid[x_mouse][y_mouse].wall;}
@@ -118,8 +118,8 @@ var currentMousePos = [];
     function mouseDragged(){
       
       
-      let x_mouse=floor(mouseX/cellWidth);
-      let y_mouse=floor(mouseY/cellHeight);
+      let x_mouse=floor(mouseX/cellDimentions);
+      let y_mouse=floor(mouseY/cellDimentions );
 
       if(mouseButton === LEFT && keyIsPressed === false){
       currentMousePos.push(x_mouse,y_mouse);
