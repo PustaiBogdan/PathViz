@@ -18,7 +18,7 @@ function Spot(i, j) {
 
   // Neighbors
   this.neighbors = [];
-
+  this.isHoverd=false;
   // Where did I come from?
   this.previous = undefined;
   this.visited=false;
@@ -43,15 +43,23 @@ function Spot(i, j) {
     
       rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
       
-      console.log(this.i * cellDimentions,this.j * cellDimentions);
+  
 
-    } else if (col) {
+    } else if (col && this.isHoverd==false) {
       strokeWeight(1);
       stroke(50);
       fill(col);
       
       rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
     //  console.log(this.i*cellDimentions,this.j*cellDimentions);
+    }
+    else if (col && this.isHoverd==true) {
+      strokeWeight(6);
+      stroke(100,100,15);
+      fill(col);
+      
+      rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+    console.log(this.i*cellDimentions,this.j*cellDimentions);
     }
   };
 

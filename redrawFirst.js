@@ -26,6 +26,7 @@ function redrawFirst(){
   start.show(color(200,50,50));
   end.show(color(200,50,50));
 
+
   noFill();
   stroke(255);
   strokeWeight(cellDimentions/2);

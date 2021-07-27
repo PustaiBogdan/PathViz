@@ -1,5 +1,8 @@
 var pos,posx,posy;
 var deleteWalls=false;
+var pause=false;
+var selectStartPoint=false;
+
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -20,25 +23,25 @@ function removeFromArray(arr, elt) {
   var cellDimentions= 35;
   // How many columns and cols?
   var rows = 10;
-  var cols = 40;
+  var cols = 20;
   var w=cols*cellDimentions, h=rows*cellDimentions;
 
 
   // This will be the 2D array
+
+  
+  // Start and end
+  var start,end;
+
+  
+  // Width and height of each cell of grid
+
+
   var grid = new Array(rows);
   
   // Open and closed set
   var openSet = [];
   var closedSet = [];
-  
-  // Start and end
-  var start;
-  var end;
-  
-  // Width and height of each cell of grid
-
-
- 
 
   
   // The road taken
@@ -47,7 +50,7 @@ function removeFromArray(arr, elt) {
   function setup() {
 
     createCanvas(w, h);
-
+   
 
 
     // Grid cell size
@@ -76,14 +79,17 @@ function removeFromArray(arr, elt) {
     end = grid[rows - 1][cols-1];
     start.wall = false;
     end.wall = false;
-    console.log(grid);
+
   
     // openSet starts with beginning only
 
     openSet.push(start);
     redrawFirst();
-
+    justStarted=false;
     frameRate(20);
+    console.log(justStarted);
+
+    loop();
   }
   
   
@@ -99,11 +105,15 @@ function removeFromArray(arr, elt) {
     
  
     AStarSerch(begin);
-
+    if(selectStartPoint==true){
+      moveStartPoint();
+    }
+    
+    
   }
 
   function mousePressed(){
-
+ 
     let x_mouse=floor(mouseY/cellDimentions);
     let y_mouse=floor(mouseX/cellDimentions);
 
@@ -116,6 +126,7 @@ function removeFromArray(arr, elt) {
 
 var currentXMousePos,currentYMousePos;
 var currentMousePos = [];
+var currentMousePosSelect = [];
     function mouseDragged(){
       
       
@@ -159,15 +170,60 @@ var currentMousePos = [];
     redrawFirst();
 }
     }
-  
-    // function keyPressed(){
-    //   if(key=='q'){
-    //     deleteWalls=true;
-    //     console.log("true")
-    //   }else{
-    //     deleteWalls=false;
-    //     console.log("false");
-    //   }
-    // }
+      
+function clearTheCanvas(){
 
- 
+  const context = canvas.getContext('2d');
+  
+  begin=false;
+
+  grid = new Array(rows);
+  openSet = [];
+  closedSet = [];
+  path = [];
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  setup();
+
+  
+}
+
+var variabila=false;
+
+function moveStartPoint(){
+  selectStartPoint=true;
+    let x_mouse=floor(mouseY/cellDimentions);
+    let y_mouse=floor(mouseX/cellDimentions);
+
+
+
+     currentMousePosSelect.push(y_mouse,x_mouse);
+      if(currentMousePosSelect.length>=6){
+        currentMousePosSelect.splice(0,2);
+      }
+  console.log(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0 &&  currentMousePosSelect[0]>=0 && currentMousePosSelect[1]>=0 && currentMousePosSelect[1]<rows  && currentMousePosSelect[1]<cols);
+    if(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0)    {
+      
+    
+
+      if(currentMousePosSelect[0]>=0  && currentMousePosSelect[0]<cols && currentMousePosSelect[1]>=0 && currentMousePosSelect[1]<rows  && currentMousePosSelect[1]<cols)
+        {//  if(x_mouse!=currentMousePosSelect[currentMousePosSelect.length-4] || y_mouse!= currentMousePosSelect[currentMousePosSelect.length-3])
+        //    grid[x_mouse][y_mouse].isHoverd=true;
+
+        // grid[currentMousePosSelect[currentMousePosSelect.length-4]][currentMousePosSelect[currentMousePosSelect.length-3]].isHoverd=false;
+        //    grid[currentMousePosSelect[currentMousePosSelect.length-2]][currentMousePosSelect[currentMousePosSelect.length-1]].isHoverd=true;
+        
+        grid[currentMousePosSelect[1]][currentMousePosSelect[0]].isHoverd=false;
+        grid[currentMousePosSelect[3]][currentMousePosSelect[2]].isHoverd=true;
+        //    grid[currentMousePosSelect[currentMousePosSelect.length-2]][currentMousePosSelect[currentMousePosSelect.length-1]].isHoverd=true;
+      
+        console.log(currentMousePosSelect[3], currentMousePosSelect[2]);
+    
+        redrawFirst();
+        
+      }
+   }
+    
+}
+// function mouseOver(){
+//   console.log("AAA");
+// }
