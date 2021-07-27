@@ -25,7 +25,7 @@ function Spot(i, j) {
   
     // Am I a wall?
     this.wall = false;
-    if (random(1) < 0.0) {
+    if (random(1) < 0.2) {
       this.wall = true;
     }
     // if(this.i==3 && this.j>3){
@@ -41,13 +41,14 @@ function Spot(i, j) {
        noStroke();
         fill('rgb(45, 45, 45)');
       
-        rect(this.i * w, this.j * h, w, h);
+        rect(this.i * cellDimentions,this.j * cellDimentions, cellDimentions);
         //ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
       } else if (col) {
         strokeWeight(1);
-        stroke(110  );
+        stroke(50);
         fill(col);
-        rect(this.i * w, this.j * h, w, h);
+        rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+      //  console.log(this.i*cellDimentions,this.j*cellDimentions);
       }
     };
   
@@ -79,5 +80,5 @@ function Spot(i, j) {
       // if (i < rows - 1 && j < cols - 1) {
       //   this.neighbors.push(grid[i + 1][j + 1]);
       // }
-    };
+    }
   }
