@@ -41,12 +41,15 @@ function Spot(i, j) {
        noStroke();
         fill('rgb(45, 45, 45)');
       
-        rect(this.i * cellDimentions,this.j * cellDimentions, cellDimentions);
-        //ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
+        rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+        
+        console.log(this.i * cellDimentions,this.j * cellDimentions);
+
       } else if (col) {
         strokeWeight(1);
         stroke(50);
         fill(col);
+        
         rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
       //  console.log(this.i*cellDimentions,this.j*cellDimentions);
       }

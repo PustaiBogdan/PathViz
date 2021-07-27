@@ -83,7 +83,7 @@
     }
     for (var i=0;i<rows;i++){
       for(var j=0; j<cols;j++){
-        if(true){
+        if(!openSet.includes(grid[i][j]) && !closedSet.includes(grid[i][j])){
           grid[i][j].show(color(225, 225, 225));
           console.log(grid[i][j].wall);
         }
@@ -145,5 +145,5 @@ function startAStar(){
     if(begin==false){
       buttonText.innerHTML="Start A* serch";
     }
- 
+ console.log(grid);
   }

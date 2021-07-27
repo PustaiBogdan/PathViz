@@ -17,10 +17,10 @@ function removeFromArray(arr, elt) {
     // var d = abs(a.i - b.i) + abs(a.j - b.j);
     return d;
   }
-  var cellDimentions= 25;
+  var cellDimentions= 35;
   // How many columns and cols?
-  var rows = 19;
-  var cols = 20;
+  var rows = 10;
+  var cols = 40;
   var w=cols*cellDimentions, h=rows*cellDimentions;
 
 
@@ -76,6 +76,7 @@ function removeFromArray(arr, elt) {
     end = grid[rows - 1][cols-1];
     start.wall = false;
     end.wall = false;
+    console.log(grid);
   
     // openSet starts with beginning only
 
@@ -103,8 +104,8 @@ function removeFromArray(arr, elt) {
 
   function mousePressed(){
 
-    let x_mouse=floor(mouseX/cellDimentions);
-    let y_mouse=floor(mouseY/cellDimentions);
+    let x_mouse=floor(mouseY/cellDimentions);
+    let y_mouse=floor(mouseX/cellDimentions);
 
     if(x_mouse<cols && y_mouse<rows && x_mouse>=0 && y_mouse>=0)
 {    grid[x_mouse][y_mouse].wall=!grid[x_mouse][y_mouse].wall;}
@@ -118,8 +119,8 @@ var currentMousePos = [];
     function mouseDragged(){
       
       
-      let x_mouse=floor(mouseX/cellDimentions);
-      let y_mouse=floor(mouseY/cellDimentions );
+      let x_mouse=floor(mouseY/cellDimentions);
+      let y_mouse=floor(mouseX/cellDimentions );
 
       if(mouseButton === LEFT && keyIsPressed === false){
       currentMousePos.push(x_mouse,y_mouse);
@@ -128,7 +129,7 @@ var currentMousePos = [];
       }
       // console.log(currentMousePos[currentMousePos.length-1]);
       //console.log(currentMousePos[currentMousePos.length-1],currentMousePos[currentMousePos.length-2]);
-      if(x_mouse<cols && y_mouse<rows && x_mouse>=0 && y_mouse>=0)    {
+      if(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0)    {
         // currentXMousePos=x_mouse;
         // currentYMousePos=y_mouse;
       
@@ -144,7 +145,7 @@ var currentMousePos = [];
     
     // console.log(currentMousePos[currentMousePos.length-1]);
     //console.log(currentMousePos[currentMousePos.length-1],currentMousePos[currentMousePos.length-2]);
-    if(x_mouse<cols && y_mouse<rows && x_mouse>=0 && y_mouse>=0)    {
+    if(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0)    {
       // currentXMousePos=x_mouse;
       // currentYMousePos=y_mouse;
     
