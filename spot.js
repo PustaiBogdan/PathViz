@@ -58,6 +58,7 @@ function Spot(i, j) {
       stroke(100,100,15);
       fill(col);
       
+
       rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
     console.log(this.i*cellDimentions,this.j*cellDimentions);
     }
@@ -75,6 +76,50 @@ function Spot(i, j) {
     }
     if (j < cols - 1) {
       this.neighbors.push(grid[i][j + 1]);
+
+        rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+        
+        console.log(this.i * cellDimentions,this.j * cellDimentions);
+
+      } else if (col) {
+        strokeWeight(1);
+        stroke(50);
+        fill(col);
+        
+        rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+      //  console.log(this.i*cellDimentions,this.j*cellDimentions);
+      }
+    };
+  
+    // Figure out who my neighbors are
+    this.addNeighbors = function(grid) {
+      var i = this.i;
+      var j = this.j;
+      if (i < rows - 1) {
+        this.neighbors.push(grid[i + 1][j]);
+      }
+      if (i > 0) {
+        this.neighbors.push(grid[i - 1][j]);
+      }
+      if (j < cols - 1) {
+        this.neighbors.push(grid[i][j + 1]);
+      }
+      if (j > 0) {
+        this.neighbors.push(grid[i][j - 1]);
+      }
+      // if (i > 0 && j > 0) {
+      //   this.neighbors.push(grid[i - 1][j - 1]);
+      // }
+      // if (i < rows - 1 && j > 0) {
+      //   this.neighbors.push(grid[i + 1][j - 1]);
+      // }
+      // if (i > 0 && j < cols - 1) {
+      //   this.neighbors.push(grid[i - 1][j + 1]);
+      // }
+      // if (i < rows - 1 && j < cols - 1) {
+      //   this.neighbors.push(grid[i + 1][j + 1]);
+      // }
+
     }
     if (j > 0) {
       this.neighbors.push(grid[i][j - 1]);

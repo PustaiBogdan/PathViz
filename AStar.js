@@ -62,6 +62,7 @@ function AStarSerch(begin){
         }
       }
     }
+
     // Uh oh, no solution
   } else {
     console.log('no solution');
@@ -73,6 +74,18 @@ function AStarSerch(begin){
 
 background(225, 225, 225);
 
+
+  
+    for (var i = 0; i < openSet.length; i++) {
+      openSet[i].show(color(205, 205, 0));
+    }
+    for (var i=0;i<rows;i++){
+      for(var j=0; j<cols;j++){
+        if(!openSet.includes(grid[i][j]) && !closedSet.includes(grid[i][j])){
+          grid[i][j].show(color(225, 225, 225));
+          console.log(grid[i][j].wall);
+        }
+ 
 
   for (var i = 0; i < closedSet.length; i++) {
     closedSet[i].show(color(0, 205, 0));
@@ -137,6 +150,7 @@ background(225, 225, 225);
 }
 
 function startAStar(){
+
   begin=!(begin);
   let buttonText=document.getElementById("startAStar");
   if(begin==true){
@@ -144,6 +158,17 @@ function startAStar(){
   }
   if(begin==false){
     buttonText.innerHTML="Start A* serch";
+
+    begin=!(begin);
+    let buttonText=document.getElementById("startAStar");
+    if(begin==true){
+      buttonText.innerHTML="Stop A* serch";
+    }
+    if(begin==false){
+      buttonText.innerHTML="Start A* serch";
+    }
+ console.log(grid);
+
   }
 console.log(begin);
 }

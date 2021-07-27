@@ -23,7 +23,11 @@ function removeFromArray(arr, elt) {
   var cellDimentions= 35;
   // How many columns and cols?
   var rows = 10;
+
   var cols = 20;
+
+  var cols = 40;
+
   var w=cols*cellDimentions, h=rows*cellDimentions;
 
 
@@ -80,6 +84,10 @@ function removeFromArray(arr, elt) {
     start.wall = false;
     end.wall = false;
 
+
+
+    console.log(grid);
+
   
     // openSet starts with beginning only
 
@@ -113,7 +121,7 @@ function removeFromArray(arr, elt) {
   }
 
   function mousePressed(){
- 
+
     let x_mouse=floor(mouseY/cellDimentions);
     let y_mouse=floor(mouseX/cellDimentions);
 
