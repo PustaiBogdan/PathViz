@@ -7,78 +7,81 @@
 
 // An object to describe a spot in the grid
 function Spot(i, j) {
-    // Location
-    this.i = i;
-    this.j = j;
-  
-    // f, g, and h values for A*
-    this.f = 0;
-    this.g = 0;
-    this.h = 0;
-  
-    // Neighbors
-    this.neighbors = [];
-  
-    // Where did I come from?
-    this.previous = undefined;
-    this.visited=false;
-  
-    // Am I a wall?
-    this.wall = false;
-    if (random(1) < 0.2) {
-      this.wall = true;
-    }
-    // if(this.i==3 && this.j>3){
-    //   this.wall = true;
-    // }
-    // if(this.j==3 && this.i>=3){
-    //   this.wall = true;
-    // }
-  
-    // Display me
-    this.show = function(col) {
-      if (this.wall) {
-       noStroke();
-        fill('rgb(45, 45, 45)');
-      
-        rect(this.i * cellDimentions,this.j * cellDimentions, cellDimentions);
-        //ellipse(this.i * w + w / 2, this.j * h + h / 2, w / 2, h / 2);
-      } else if (col) {
-        strokeWeight(1);
-        stroke(50);
-        fill(col);
-        rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
-      //  console.log(this.i*cellDimentions,this.j*cellDimentions);
-      }
-    };
-  
-    // Figure out who my neighbors are
-    this.addNeighbors = function(grid) {
-      var i = this.i;
-      var j = this.j;
-      if (i < rows - 1) {
-        this.neighbors.push(grid[i + 1][j]);
-      }
-      if (i > 0) {
-        this.neighbors.push(grid[i - 1][j]);
-      }
-      if (j < cols - 1) {
-        this.neighbors.push(grid[i][j + 1]);
-      }
-      if (j > 0) {
-        this.neighbors.push(grid[i][j - 1]);
-      }
-      // if (i > 0 && j > 0) {
-      //   this.neighbors.push(grid[i - 1][j - 1]);
-      // }
-      // if (i < rows - 1 && j > 0) {
-      //   this.neighbors.push(grid[i + 1][j - 1]);
-      // }
-      // if (i > 0 && j < cols - 1) {
-      //   this.neighbors.push(grid[i - 1][j + 1]);
-      // }
-      // if (i < rows - 1 && j < cols - 1) {
-      //   this.neighbors.push(grid[i + 1][j + 1]);
-      // }
-    }
+  // Location
+  this.i = i;
+  this.j = j;
+
+  // f, g, and h values for A*
+  this.f = 0;
+  this.g = 0;
+  this.h = 0;
+
+  // Neighbors
+  this.neighbors = [];
+
+  // Where did I come from?
+  this.previous = undefined;
+  this.visited=false;
+
+  // Am I a wall?
+  this.wall = false;
+  if (random(1) < 0.2) {
+    this.wall = true;
   }
+  // if(this.i==3 && this.j>3){
+  //   this.wall = true;
+  // }
+  // if(this.j==3 && this.i>=3){
+  //   this.wall = true;
+  // }
+
+  // Display me
+  this.show = function(col) {
+    if (this.wall) {
+     noStroke();
+      fill('rgb(45, 45, 45)');
+    
+      rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+      
+      console.log(this.i * cellDimentions,this.j * cellDimentions);
+
+    } else if (col) {
+      strokeWeight(1);
+      stroke(50);
+      fill(col);
+      
+      rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
+    //  console.log(this.i*cellDimentions,this.j*cellDimentions);
+    }
+  };
+
+  // Figure out who my neighbors are
+  this.addNeighbors = function(grid) {
+    var i = this.i;
+    var j = this.j;
+    if (i < rows - 1) {
+      this.neighbors.push(grid[i + 1][j]);
+    }
+    if (i > 0) {
+      this.neighbors.push(grid[i - 1][j]);
+    }
+    if (j < cols - 1) {
+      this.neighbors.push(grid[i][j + 1]);
+    }
+    if (j > 0) {
+      this.neighbors.push(grid[i][j - 1]);
+    }
+    // if (i > 0 && j > 0) {
+    //   this.neighbors.push(grid[i - 1][j - 1]);
+    // }
+    // if (i < rows - 1 && j > 0) {
+    //   this.neighbors.push(grid[i + 1][j - 1]);
+    // }
+    // if (i > 0 && j < cols - 1) {
+    //   this.neighbors.push(grid[i - 1][j + 1]);
+    // }
+    // if (i < rows - 1 && j < cols - 1) {
+    //   this.neighbors.push(grid[i + 1][j + 1]);
+    // }
+  }
+}
