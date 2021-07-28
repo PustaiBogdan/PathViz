@@ -1,10 +1,9 @@
- // An educated guess of how far it is between two points
- function heuristic(a, b) {
+// An educated guess of how far it is between two points
+function heuristic(a, b) {
   var d = dist(a.i, a.j, b.i, b.j);
  // var d = abs(a.i - b.i) + abs(a.j - b.j);
  return d;
 }
-
 
 function AStarSerch(begin){
   if(begin)
@@ -38,7 +37,6 @@ function AStarSerch(begin){
       if (!closedSet.includes(neighbor) && !neighbor.wall) {
         var tempG = current.g + heuristic(neighbor, current);
 
-
         // Is this a better path than before?
         var newPath = false;
         if (openSet.includes(neighbor)) {
@@ -62,7 +60,6 @@ function AStarSerch(begin){
         }
       }
     }
-
     // Uh oh, no solution
   } else {
     console.log('no solution');
@@ -73,19 +70,6 @@ function AStarSerch(begin){
   // Draw current state of everything
 
 background(225, 225, 225);
-
-
-  
-    for (var i = 0; i < openSet.length; i++) {
-      openSet[i].show(color(205, 205, 0));
-    }
-    for (var i=0;i<rows;i++){
-      for(var j=0; j<cols;j++){
-        if(!openSet.includes(grid[i][j]) && !closedSet.includes(grid[i][j])){
-          grid[i][j].show(color(225, 225, 225));
-          console.log(grid[i][j].wall);
-        }
- 
 
   for (var i = 0; i < closedSet.length; i++) {
     closedSet[i].show(color(0, 205, 0));
@@ -150,7 +134,6 @@ background(225, 225, 225);
 }
 
 function startAStar(){
-
   begin=!(begin);
   let buttonText=document.getElementById("startAStar");
   if(begin==true){
@@ -158,17 +141,6 @@ function startAStar(){
   }
   if(begin==false){
     buttonText.innerHTML="Start A* serch";
-
-    begin=!(begin);
-    let buttonText=document.getElementById("startAStar");
-    if(begin==true){
-      buttonText.innerHTML="Stop A* serch";
-    }
-    if(begin==false){
-      buttonText.innerHTML="Start A* serch";
-    }
- console.log(grid);
-
   }
 console.log(begin);
 }
