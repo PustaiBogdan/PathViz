@@ -1,4 +1,3 @@
-var pos,posx,posy;
 var deleteWalls=false;
 var pause=false;
 var selectStartPoint=false;
@@ -23,13 +22,8 @@ function removeFromArray(arr, elt) {
   var cellDimentions= 35;
   // How many columns and cols?
   var rows = 10;
-
   var cols = 20;
-
-  var cols = 40;
-
   var w=cols*cellDimentions, h=rows*cellDimentions;
-
 
   // This will be the 2D array
 
@@ -39,7 +33,6 @@ function removeFromArray(arr, elt) {
 
   
   // Width and height of each cell of grid
-
 
   var grid = new Array(rows);
   
@@ -55,7 +48,6 @@ function removeFromArray(arr, elt) {
 
     createCanvas(w, h);
    
-
 
     // Grid cell size
 
@@ -84,10 +76,6 @@ function removeFromArray(arr, elt) {
     start.wall = false;
     end.wall = false;
 
-
-
-    console.log(grid);
-
   
     // openSet starts with beginning only
 
@@ -101,7 +89,6 @@ function removeFromArray(arr, elt) {
   }
   
   
-
 
 
   function draw(e) {
@@ -121,13 +108,12 @@ function removeFromArray(arr, elt) {
   }
 
   function mousePressed(){
-
+ 
     let x_mouse=floor(mouseY/cellDimentions);
     let y_mouse=floor(mouseX/cellDimentions);
 
     if(x_mouse<cols && y_mouse<rows && x_mouse>=0 && y_mouse>=0)
 {    grid[x_mouse][y_mouse].wall=!grid[x_mouse][y_mouse].wall;}
-
 
     redrawFirst();
     }
@@ -201,7 +187,6 @@ function moveStartPoint(){
   selectStartPoint=true;
     let x_mouse=floor(mouseY/cellDimentions);
     let y_mouse=floor(mouseX/cellDimentions);
-
 
 
      currentMousePosSelect.push(y_mouse,x_mouse);
