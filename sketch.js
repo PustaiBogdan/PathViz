@@ -2,7 +2,8 @@ var deleteWalls=false;
 var pause=false;
 var selectStartPoint=false;
 var selectEndPoint=false;
-
+var procet=20;
+var allowRandomWalls=true;
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -15,11 +16,11 @@ function removeFromArray(arr, elt) {
   
   var begin=false;
   // An educated guess of how far it is between two points
-  function heuristic(a, b) {
-     var d = dist(a.i, a.j, b.i, b.j);
-    // var d = abs(a.i - b.i) + abs(a.j - b.j);
-    return d;
-  }
+  // function heuristic(a, b) {
+  //    var d = dist(a.i, a.j, b.i, b.j);
+  //   // var d = abs(a.i - b.i) + abs(a.j - b.j);
+  //   return d;
+  // }
   var cellDimentions= 35;
   // How many columns and cols?
   var rows = 10;
@@ -48,7 +49,7 @@ function removeFromArray(arr, elt) {
   function setup() {
 
     createCanvas(w, h);
-   
+ 
 
     // Grid cell size
 
@@ -84,8 +85,8 @@ function removeFromArray(arr, elt) {
     redrawFirst();
     justStarted=false;
     frameRate(20);
-    console.log(justStarted);
-
+  
+    console.log(grid);
     loop();
   }
   
@@ -300,3 +301,87 @@ console.log("Aa");
  }
 
 }
+
+
+let nr_rows=document.getElementById("nr_of_rows").addEventListener("keyup", (e)=>{  
+  if(e.key==='Enter'){
+    rows=parseInt(e.target.value);
+      h=rows*cellDimentions;
+      grid=new Array(rows);
+      begin=false;
+      openSet= [];
+      closedSet = [];
+      path=[];
+
+ setup();
+    
+
+   
+  }
+
+});
+
+
+let nr_cols=document.getElementById("nr_of_cols").addEventListener("keyup", (e)=>{  
+  if(e.key==='Enter'){
+    cols=parseInt(e.target.value);
+      w=cols*cellDimentions;
+
+      begin=false;
+      openSet= [];
+      closedSet = [];
+      path=[];
+
+ setup();
+
+   
+  }
+
+});
+
+let cell_size=document.getElementById("cell_size").addEventListener("keyup", (e)=>{  
+  if(e.key==='Enter'){
+  
+    cellDimentions=parseInt(e.target.value);
+    w=cols*cellDimentions, h=rows*cellDimentions;
+
+      begin=false;
+      openSet= [];
+      closedSet = [];
+      path=[];
+
+ setup();
+
+
+   
+  }
+
+});
+
+
+let rand_wall_procentage=document.getElementById("procentage_random_walls").addEventListener("keyup", (e)=>{  
+  if(e.key==='Enter'){
+  
+    procet=parseInt(e.target.value);
+    
+
+      begin=false;
+      openSet= [];
+      closedSet = [];
+      path=[];
+ setup();
+  }
+});
+
+let checkBoxRamdomWalls=document.getElementById("_checkbox").addEventListener("change",(e)=>{
+
+allowRandomWalls=!allowRandomWalls;
+
+ console.log(allowRandomWalls);
+  begin=false;
+  openSet= [];
+  closedSet = [];
+  path=[];
+  setup();
+   
+  })

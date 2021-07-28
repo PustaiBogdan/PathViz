@@ -25,7 +25,7 @@ function Spot(i, j) {
 
   // Am I a wall?
   this.wall = false;
-  if (random(1) < 0.2) {
+  if (random(1) < procet/100 && allowRandomWalls==true) {
     this.wall = true;
   }
   // if(this.i==3 && this.j>3){

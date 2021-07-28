@@ -2,12 +2,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
-        
-        <script language="javascript" type="text/javascript" src="sketch.js"></script>
-        <script language="javascript" type="text/javascript" src="spot.js"></script>
-        <script src="AStar.js"></script>
-        <script src="redrawFirst.js"></script>
+
 
         <link rel="stylesheet" href="style.css">
     </head>
@@ -26,6 +21,31 @@
       <button id="move-end-point" onclick="moveEndPoint()">
         Move the ending point
       </button>
+
+      <form >
+        <label for="nr_of_rows">Number of rows:</label>
+        <input type="text" id="nr_of_rows">
+
+        <label for="nr_of_cols">Number of colloms:</label>
+        <input type="text" id="nr_of_cols">
+
+        <label for="cell_size">Cell size</label>
+        <input type="text" id="cell_size">
+
+        <label for="cell_size">Procentage of random walls</label>
+        <input type="text" id="procentage_random_walls">
+
+        <label for="_checkbox">Allow random walls</label>
+        <input type="checkbox" id="_checkbox">
+      </form>
+
+
+      <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
+        
+      <script language="javascript" type="text/javascript" src="sketch.js"></script>
+      <script language="javascript" type="text/javascript" src="spot.js"></script>
+      <script src="AStar.js"></script>
+      <script src="redrawFirst.js"></script>
     </body>
     
 </html>
