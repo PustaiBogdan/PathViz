@@ -305,7 +305,8 @@ console.log("Aa");
 
 let nr_rows=document.getElementById("nr_of_rows").addEventListener("keyup", (e)=>{  
   if(e.key==='Enter'){
-    rows=parseInt(e.target.value);
+    rows= ((isNaN (parseInt(e.target.value)) || parseInt(e.target.value)>60) ? 15 : parseInt(e.target.value));
+
       h=rows*cellDimentions;
       grid=new Array(rows);
       begin=false;
@@ -324,7 +325,7 @@ let nr_rows=document.getElementById("nr_of_rows").addEventListener("keyup", (e)=
 
 let nr_cols=document.getElementById("nr_of_cols").addEventListener("keyup", (e)=>{  
   if(e.key==='Enter'){
-    cols=parseInt(e.target.value);
+    cols= ((isNaN (parseInt(e.target.value)) || parseInt(e.target.value)>60) ? 25 : parseInt(e.target.value));
       w=cols*cellDimentions;
 
       begin=false;
