@@ -46,20 +46,23 @@ function Spot(i, j) {
   
 
     } else if (col && this.isHoverd==false) {
-      strokeWeight(1);
-      stroke(50);
+      strokeWeight(0.5);
+      stroke('black');
       fill(col);
       
       rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
     //  console.log(this.i*cellDimentions,this.j*cellDimentions);
     }
     else if (col && this.isHoverd==true) {
-      strokeWeight(6);
-      stroke(100,100,15);
+      strokeWeight(2.5);
+      stroke('black');
       fill(col);
+     
+   
       
-      rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions);
-    console.log(this.i*cellDimentions,this.j*cellDimentions);
+    
+      rect(this.j * cellDimentions,this.i * cellDimentions, cellDimentions,cellDimentions);
+
     }
   };
 

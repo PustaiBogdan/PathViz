@@ -1,6 +1,7 @@
 var deleteWalls=false;
 var pause=false;
 var selectStartPoint=false;
+var selectEndPoint=false;
 
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
@@ -104,6 +105,14 @@ function removeFromArray(arr, elt) {
       moveStartPoint();
     }
     
+    if(selectEndPoint==true){
+      moveEndPoint();
+    }
+    // if(mouseButton === LEFT)
+    // {
+      
+    // }
+
     
   }
 
@@ -181,10 +190,10 @@ function clearTheCanvas(){
   
 }
 
-var variabila=false;
 
 function moveStartPoint(){
   selectStartPoint=true;
+  selectEndPoint=false;
     let x_mouse=floor(mouseY/cellDimentions);
     let y_mouse=floor(mouseX/cellDimentions);
 
@@ -193,7 +202,7 @@ function moveStartPoint(){
       if(currentMousePosSelect.length>=6){
         currentMousePosSelect.splice(0,2);
       }
-  console.log(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0 &&  currentMousePosSelect[0]>=0 && currentMousePosSelect[1]>=0 && currentMousePosSelect[1]<rows  && currentMousePosSelect[1]<cols);
+ 
     if(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0)    {
       
     
@@ -209,14 +218,85 @@ function moveStartPoint(){
         grid[currentMousePosSelect[3]][currentMousePosSelect[2]].isHoverd=true;
         //    grid[currentMousePosSelect[currentMousePosSelect.length-2]][currentMousePosSelect[currentMousePosSelect.length-1]].isHoverd=true;
       
-        console.log(currentMousePosSelect[3], currentMousePosSelect[2]);
+
     
         redrawFirst();
         
       }
    }
+
+  
     
 }
 // function mouseOver(){
 //   console.log("AAA");
 // }
+
+function mouseClicked(){
+  let x_mouse=floor(mouseY/cellDimentions);
+  let y_mouse=floor(mouseX/cellDimentions);
+  if(selectStartPoint==true && x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0){
+    selectStartPoint=false;
+    console.log(start);
+    openSet.pop();
+
+    start=grid[x_mouse][y_mouse];
+
+    start.wall=false;
+    start.isHoverd=false;
+    openSet.push(start);
+    console.log(start);
+    redrawFirst();
+  }
+  if(selectEndPoint==true && x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0){
+    selectEndPoint=false;
+    console.log(end);
+
+
+    end=grid[x_mouse][y_mouse];
+
+    end.wall=false;
+    end.isHoverd=false;
+
+    console.log(end);
+    redrawFirst();
+  }
+}
+
+function moveEndPoint(){
+  selectEndPoint=true;
+  selectStartPoint=false;
+
+console.log("Aa");
+  let x_mouse=floor(mouseY/cellDimentions);
+  let y_mouse=floor(mouseX/cellDimentions);
+
+
+   currentMousePosSelect.push(y_mouse,x_mouse);
+    if(currentMousePosSelect.length>=6){
+      currentMousePosSelect.splice(0,2);
+    }
+
+  if(x_mouse<rows && y_mouse<cols && x_mouse>=0 && y_mouse>=0)    {
+    
+  
+
+    if(currentMousePosSelect[0]>=0  && currentMousePosSelect[0]<cols && currentMousePosSelect[1]>=0 && currentMousePosSelect[1]<rows  && currentMousePosSelect[1]<cols)
+      {//  if(x_mouse!=currentMousePosSelect[currentMousePosSelect.length-4] || y_mouse!= currentMousePosSelect[currentMousePosSelect.length-3])
+      //    grid[x_mouse][y_mouse].isHoverd=true;
+
+      // grid[currentMousePosSelect[currentMousePosSelect.length-4]][currentMousePosSelect[currentMousePosSelect.length-3]].isHoverd=false;
+      //    grid[currentMousePosSelect[currentMousePosSelect.length-2]][currentMousePosSelect[currentMousePosSelect.length-1]].isHoverd=true;
+      
+      grid[currentMousePosSelect[1]][currentMousePosSelect[0]].isHoverd=false;
+      grid[currentMousePosSelect[3]][currentMousePosSelect[2]].isHoverd=true;
+      //    grid[currentMousePosSelect[currentMousePosSelect.length-2]][currentMousePosSelect[currentMousePosSelect.length-1]].isHoverd=true;
+    
+
+  
+      redrawFirst();
+      
+    }
+ }
+
+}
