@@ -22,6 +22,7 @@ function AStarSerch(begin){
     if (current === end) {
       noLoop();
       console.log('DONE!');
+      
     }
 
     // Best option moves from openSet to closedSet
@@ -142,5 +143,5 @@ function startAStar(){
   if(begin==false){
     buttonText.innerHTML="Start A* serch";
   }
-console.log(begin);
+
 }

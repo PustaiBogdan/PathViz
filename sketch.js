@@ -4,6 +4,7 @@ var selectStartPoint=false;
 var selectEndPoint=false;
 var procet=20;
 var allowRandomWalls=true;
+var boolGEnMaze=false;
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -24,7 +25,7 @@ function removeFromArray(arr, elt) {
   var cellDimentions= 35;
   // How many columns and cols?
   var rows = 10;
-  var cols = 20;
+  var cols = 40;
   var w=cols*cellDimentions, h=rows*cellDimentions;
 
   // This will be the 2D array
@@ -33,7 +34,7 @@ function removeFromArray(arr, elt) {
   // Start and end
   var start,end;
 
-  
+
   // Width and height of each cell of grid
 
   var grid = new Array(rows);
@@ -46,7 +47,7 @@ function removeFromArray(arr, elt) {
   // The road taken
   var path = [];
   
-  function setup() {
+  function setup(val) {
 
     createCanvas(w, h);
  
@@ -55,26 +56,36 @@ function removeFromArray(arr, elt) {
 
   
     // Making a 2D array
-    for (var i = 0; i < rows; i++) {
-      grid[i] = new Array(cols);
-    }
 
-    for (var i = 0; i < rows; i++) {
-      for (var j = 0; j < cols; j++) {
-        grid[i][j] = new Spot(i, j);
-      }
-    }
   
     // All the neighbors
-    for (var i = 0; i < rows; i++) {
-      for (var j = 0; j < cols; j++) {
-        grid[i][j].addNeighbors(grid);
-      }
-    }
+
   
     // Start and end
-    start = grid[0][0];
-    end = grid[rows - 1][cols-1];
+    if(val){
+      start = grid[1][1];
+      end = grid[rows - 2][cols-2];
+    }else{
+
+      for (var i = 0; i < rows; i++) {
+        grid[i] = new Array(cols);
+      }
+  
+      for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+          grid[i][j] = new Spot(i, j);
+        }
+      }
+      for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+          grid[i][j].addNeighbors(grid);
+        }
+      }
+      start = grid[0][0];
+      end = grid[rows - 1][cols-1];
+    }
+  
+    console.log(start);
     start.wall = false;
     end.wall = false;
 
@@ -84,7 +95,7 @@ function removeFromArray(arr, elt) {
     openSet.push(start);
     redrawFirst();
     justStarted=false;
-    frameRate(20);
+    frameRate(80);
   
     console.log(grid);
     loop();
@@ -113,7 +124,7 @@ function removeFromArray(arr, elt) {
     // {
       
     // }
-
+    
     
   }
 
@@ -177,17 +188,20 @@ var currentMousePosSelect = [];
       
 function clearTheCanvas(){
 
-  const context = canvas.getContext('2d');
   
-  begin=false;
+    const context = canvas.getContext('2d');
+  
+    begin=false;
+  
+    grid = new Array(rows);
+    openSet = [];
+    closedSet = [];
+    path = [];
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    setup();
 
-  grid = new Array(rows);
-  openSet = [];
-  closedSet = [];
-  path = [];
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  setup();
 
+  
   
 }
 
@@ -268,7 +282,7 @@ function moveEndPoint(){
   selectEndPoint=true;
   selectStartPoint=false;
 
-console.log("Aa");
+
   let x_mouse=floor(mouseY/cellDimentions);
   let y_mouse=floor(mouseX/cellDimentions);
 
@@ -386,3 +400,33 @@ allowRandomWalls=!allowRandomWalls;
   setup();
    
   })
+
+function genMaze(){
+  begin=false;  
+  boolGEnMaze=true;
+
+  generate(rows,cols);
+  for(let i=0;i<rows;i++){
+    for(let j=0;j<cols;j++){
+
+      if(mazeGrid[i][j]=='w'){
+        grid[i][j].wall=true;
+      }
+     else{
+      grid[i][j].wall=false;
+     }
+
+    }
+  }
+  path=[];
+  
+
+  openSet=[];
+  // openSet.push(start);
+  closedSet=[];
+
+
+  setup(true);
+  // redrawFirst();
+
+}
