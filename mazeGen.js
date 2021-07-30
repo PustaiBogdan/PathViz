@@ -18,7 +18,7 @@ function generate(rows,cols) {
     for(let i=0;i<cols;i++){
         mazeGrid[rows-1][i]='w';
     }
-    console.log(mazeGrid);
+
 }
 
 function addOuterWalls(rows,cols) {
@@ -35,7 +35,7 @@ function addOuterWalls(rows,cols) {
 }
 
 function addEntrance(col) {
-    if(col=cols)
+  
     var x = randomNumber(1, col - 1);
     mazeGrid[rows-1- 1][x] = "g";
     return x;

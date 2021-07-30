@@ -88,7 +88,7 @@ function removeFromArray(arr, elt) {
     console.log(start);
     start.wall = false;
     end.wall = false;
-
+    
   
     // openSet starts with beginning only
 
@@ -110,7 +110,7 @@ function removeFromArray(arr, elt) {
     } else{
       deleteWalls=false;
     }
-    
+   
  
     AStarSerch(begin);
     if(selectStartPoint==true){
@@ -124,7 +124,7 @@ function removeFromArray(arr, elt) {
     // {
       
     // }
-    
+
     
   }
 
@@ -388,7 +388,7 @@ let rand_wall_procentage=document.getElementById("procentage_random_walls").addE
   }
 });
 
-let checkBoxRamdomWalls=document.getElementById("_checkbox").addEventListener("change",(e)=>{
+let checkBoxRamdomWalls=document.getElementById("btn-check-outlined").addEventListener("change",(e)=>{
 
 allowRandomWalls=!allowRandomWalls;
 
@@ -429,4 +429,13 @@ function genMaze(){
   setup(true);
   // redrawFirst();
 
+}
+
+
+setTimeout(hideAllert, 10000);
+
+
+function hideAllert(){
+  console.log('ceva');
+  document.querySelector('.alert').classList.add('hidden');
 }

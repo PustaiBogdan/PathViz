@@ -5,46 +5,54 @@
 
 
         <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </head>
     
     <body>
-      <h1>A*</h1>
-      <button id="startAStar" onclick="startAStar()">
+ 
+
+      
+
+      <button id="startAStar" class="btn btn-danger" onclick="startAStar()">
         Start A* serch
       </button>
-      <button id="clearCanvas" onclick="clearTheCanvas()">
+      <button class="btn btn-primary" id="clearCanvas" onclick="clearTheCanvas()">
         Restart All Canvas
       </button>
-      <button id="move-start-point" onclick="moveStartPoint()">
+      <button  class="btn btn-primary" id="move-start-point" onclick="moveStartPoint()">
         Move the starting point
       </button>
-      <button id="move-end-point" onclick="moveEndPoint()">
+      <button  class="btn btn-primary" id="move-end-point" onclick="moveEndPoint()">
         Move the ending point
       </button>
-      <button  onclick="genMaze()">
+      <button  class="btn btn-primary"  onclick="genMaze()">
         Generate maze
       </button>
-      <form >
-        <label for="nr_of_rows">Number of rows:</label>
-        <input type="text" id="nr_of_rows">
 
-        <label for="nr_of_cols">Number of colloms:</label>
-        <input type="text" id="nr_of_cols">
+      <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+<label class="btn btn-outline-primary" for="btn-check-outlined">Allow random walls</label><br>
 
-        <label for="cell_size">Cell size</label>
-        <input type="text" id="cell_size">
+      <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Number of rows</span>
+        <input type="text" id="nr_of_rows" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Number of colloms</span>
+        <input type="text" id="nr_of_cols" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Cell size</span>
+        <input type="text"  id="cell_size"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Percentage of random walls</span>
+        <input type="text" id="procentage_random_walls" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      </div>
 
-        <label for="cell_size">Percentage of random walls</label>
-        <input type="text" id="procentage_random_walls">
-
-        <label for="_checkbox">No random walls</label>
-        <input type="checkbox" id="_checkbox">
-
-       
-        
-      </form>
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Quick info!</h4>
+        <p>You can add walls by mouse click and/or drag</p>
+        <hr>
+        <p class="mb-0">You can remove them by <span class="text-danger">pressing 'q'</span> and mouse click/drag</p>
+      </div>
 
 
+     
       <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script>
         
       <script language="javascript" type="text/javascript" src="sketch.js"></script>
