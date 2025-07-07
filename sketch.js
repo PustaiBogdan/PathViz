@@ -5,6 +5,18 @@ var selectEndPoint=false;
 var procet=20;
 var allowRandomWalls=true;
 var boolGEnMaze=false;
+
+function calculateInitialCols() {
+  var availableWidth = window.innerWidth - 90; // 40px margin
+  var maxPossibleCols = Math.floor(availableWidth / 32); // Using 32 as cell size
+  
+  // Ensure we stay within reasonable limits
+  var minCols = 20;
+  var maxCols = 60;
+  
+  return Math.max(minCols, Math.min(maxCols, maxPossibleCols));
+}
+
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -22,10 +34,10 @@ function removeFromArray(arr, elt) {
   //   // var d = abs(a.i - b.i) + abs(a.j - b.j);
   //   return d;
   // }
-  var cellDimentions= 35;
+  var cellDimentions= 32;
   // How many columns and cols?
   var rows = 10;
-  var cols = 40;
+  var cols = calculateInitialCols();
   var w=cols*cellDimentions, h=rows*cellDimentions;
 
   // This will be the 2D array
